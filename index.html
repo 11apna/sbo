@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Stock Burner Official</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    
+    body {
+      background: #000 url("https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop") center/cover fixed;
+      color: #fff;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: -1;
+    }
+    
+    .container {
+      max-width: 480px;
+      margin: auto;
+      padding: 20px 15px 110px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 1;
+      position: relative;
+    }
+    
+    /* Profile Section */
+    .profile {
+      text-align: center;
+      padding-top: 20px;
+    }
+    
+    .profile img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+      object-fit: cover;
+    }
+    
+    .profile h1 {
+      font-size: 2rem;
+      margin-top: 15px;
+      color: #00ff88;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      letter-spacing: 0.5px;
+    }
+    
+    .profile p {
+      opacity: 0.9;
+      font-size: 1.1rem;
+      margin-top: 5px;
+      color: #cccccc;
+    }
+    
+    /* Stats Section */
+    .stats {
+      display: flex;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 18px;
+      padding: 18px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+    
+    .stats div {
+      text-align: center;
+      flex: 1;
+    }
+    
+    .stats span:first-child {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #00ff88;
+      display: block;
+    }
+    
+    .stats span:last-child {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      display: block;
+      margin-top: 5px;
+    }
+    
+    /* Cards */
+    .card {
+      background: rgba(0, 0, 0, 0.55);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: #00ffaa;
+    }
+    
+    .info {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      line-height: 1.5;
+    }
+    
+    /* Features List */
+    ul {
+      list-style: none;
+      text-align: left;
+    }
+    
+    li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+      font-size: 1rem;
+    }
+    
+    li:before {
+      content: "✅";
+      position: absolute;
+      left: 0;
+      font-size: 1.1rem;
+    }
+    
+    /* Custom Button Style */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 36px;
+      border: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10rem;
+      transition: all 0.02s;
+      font-weight: bold;
+      cursor: pointer;
+      color: #000;
+      z-index: 0;
+      box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+      text-decoration: none;
+      font-size: 1.1rem;
+      width: 100%;
+      max-width: 280px;
+      margin: 10px auto;
+      background: linear-gradient(90deg, #00ff88, #00cc6a);
+    }
+    
+    .button:hover {
+      background: linear-gradient(90deg, #00cc6a, #00aa55);
+      color: #000;
+    }
+    
+    .button:active {
+      transform: scale(0.97);
+    }
+    
+    .hoverEffect {
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    
+    .hoverEffect div {
+      background: rgb(0, 255, 136);
+      background: linear-gradient(
+        90deg,
+        rgba(0, 255, 136, 1) 0%,
+        rgba(0, 204, 106, 1) 49%,
+        rgba(0, 170, 85, 1) 100%
+      );
+      border-radius: 40rem;
+      width: 10rem;
+      height: 10rem;
+      transition: 0.4s;
+      filter: blur(20px);
+      animation: effect infinite 3s linear;
+      opacity: 0.5;
+    }
+    
+    .button:hover .hoverEffect div {
+      width: 8rem;
+      height: 8rem;
+    }
+    
+    @keyframes effect {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    /* Bottom Navigation */
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 25px 25px 0 0;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      z-index: 100;
+    }
+    
+    .bottom p {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      color: #00ff88;
+    }
+    
+    .bottom-btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border-radius: 15px;
+      background: linear-gradient(90deg, #00ff88, #00cc6a, #00aa55);
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s;
+    }
+    
+    .bottom-btn:hover {
+      transform: translateY(-2px);
+    }
+    
+    @media (min-width: 768px) {
+      .bottom {
+        display: none;
+      }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .profile h1 {
+        font-size: 1.8rem;
+      }
+      
+      .stats span:first-child {
+        font-size: 1.5rem;
+      }
+      
+      .button {
+        padding: 16px 28px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Profile Section -->
+    <div class="profile">
+      <img src="https://d1yei2z3i6k35z.cloudfront.net/13184094/6967f7bfdbe60_62370071-468b-4dd0-b245-3449cb1f2283.jfif" alt="Stock Burner Official">
+      <h1>Stock Burner Official</h1>
+      <p>Intraday Trading & Stock Market Education</p>
+    </div>
+    
+    <!-- Stats Section -->
+    <div class="stats">
+      <div><span>99%</span><span>Accuracy Rate</span></div>
+      <div><span>50K+</span><span>Traders</span></div>
+      <div><span>24/7</span><span>Market Updates</span></div>
+    </div>
+    
+    <!-- Main Card -->
+    <div class="card">
+      <h2>🚀 Intraday Banknifty & Nifty-50</h2>
+      <p class="info">Get expert intraday trading signals for Banknifty, Nifty-50, and all stocks. Join our community for premium insights.</p>
+      
+      <!-- Custom Button -->
+      <a href="https://t.me/+h0v3ARUJkG5iYzA9" class="button" target="_blank">
+        Join Telegram Now
+        <div class="hoverEffect">
+          <div></div>
+        </div>
+      </a>
+    </div>
+    
+    <!-- Features Card -->
+    <div class="card">
+      <h2>✅ What You'll Get</h2>
+      <ul>
+        <li>Official Channel for Educational Purpose</li>
+        <li>Intraday Banknifty Signals</li>
+        <li>Nifty-50 Trading Calls</li>
+        <li>All Stocks Analysis</li>
+        <li>Premium Picks FREE</li>
+        <li>Market Education & Learning</li>
+      </ul>
+    </div>
+    
+    <!-- Final Card -->
+    <div class="card">
+      <p class="info">
+        Trusted by thousands of traders with consistent winning insights. 
+        Join our Telegram channel for 100% FREE trading signals and market analysis.
+        This channel is for educational purpose only.
+      </p>
+    </div>
+  </div>
+  
+  <!-- Bottom Navigation -->
+  <div class="bottom">
+    <p><b>Join Stock Burner Official Community</b></p>
+    <a href="https://t.me/+h0v3ARUJkG5iYzA9" class="bottom-btn" target="_blank">🚀 JOIN TELEGRAM NOW</a>
+  </div>
+
+  <script>
+    // Button hover effects enhancement
+    const buttons = document.querySelectorAll('.button, .bottom-btn');
+    buttons.forEach(button => {
+      button.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+      });
+      
+      button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
+</body>
+</html>
