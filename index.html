@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock Burner Official</title>
 
 <!-- Meta Pixel Code -->
 <script>
@@ -14,8 +17,8 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)
 }(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1837850023602425');
-fbq('track', 'PageView');
+fbq('init','1837850023602425');
+fbq('track','PageView');
 </script>
 <noscript>
 <img height="1" width="1" style="display:none"
@@ -23,54 +26,65 @@ src="https://www.facebook.com/tr?id=1837850023602425&ev=PageView&noscript=1"/>
 </noscript>
 <!-- End Meta Pixel Code -->
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stock Burner Official</title>
-
 <style>
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Playfair Display", system-ui, sans-serif;
 }
 
 body{
   background:#0b0f14;
-  color:#ffffff;
+  color:#fff;
+  overflow-x:hidden;
 }
 
-/* Layout */
+/* BG image loads after */
+body.bg-loaded{
+  background:url("https://files.123freevectors.com/wp-content/original/116826-abstract-green-defocused-background-vector.jpg")
+  center/cover fixed no-repeat;
+}
+
+/* Wrapper */
 .wrapper{
   max-width:460px;
   margin:auto;
-  padding:24px 16px 120px;
+  padding:30px 16px 120px;
 }
 
-/* Header */
+/* Glass Card */
+.glass{
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(18px);
+  border-radius:24px;
+  padding:22px;
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+  margin-bottom:22px;
+}
+
+/* Profile */
 .profile{
   text-align:center;
-  margin-top:20px;
 }
 
 .profile img{
   width:130px;
   height:130px;
   border-radius:50%;
-  border:2px solid #00ff9c;
+  border:3px solid #00ff9c;
   object-fit:cover;
 }
 
 .profile h1{
   margin-top:14px;
-  font-size:1.9rem;
+  font-size:2rem;
   font-weight:700;
-  letter-spacing:.5px;
+  letter-spacing:1px;
 }
 
 .profile p{
   margin-top:6px;
-  font-size:1rem;
   opacity:.8;
 }
 
@@ -83,16 +97,15 @@ body{
 
 .stat{
   flex:1;
-  background:#121821;
-  border-radius:18px;
-  padding:16px 10px;
   text-align:center;
+  padding:16px 8px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.05);
 }
 
 .stat h3{
   color:#00ff9c;
   font-size:1.6rem;
-  font-weight:800;
 }
 
 .stat span{
@@ -100,70 +113,53 @@ body{
   opacity:.8;
 }
 
-/* Card */
-.card{
-  background:#121821;
-  border-radius:22px;
-  padding:22px;
-  margin-top:22px;
-}
-
-.card h2{
+/* Headings */
+h2{
+  color:#00ff9c;
   font-size:1.35rem;
   margin-bottom:10px;
-  color:#00ff9c;
 }
 
-.card p{
-  font-size:.95rem;
-  line-height:1.6;
-  opacity:.85;
-}
-
-/* Feature List */
-ul{
-  list-style:none;
-  margin-top:10px;
-}
-
+/* List */
+ul{list-style:none;}
 li{
   padding:8px 0;
   font-size:.95rem;
 }
-
 li::before{
   content:"✓";
   color:#00ff9c;
-  font-weight:bold;
   margin-right:8px;
 }
 
-/* CTA Button */
+/* CTA */
 .cta{
-  display:block;
-  margin:20px auto 0;
   width:100%;
   padding:16px;
-  text-align:center;
+  border:none;
   border-radius:50px;
   background:linear-gradient(90deg,#00ff9c,#00cc78);
   color:#000;
   font-weight:700;
-  text-decoration:none;
   font-size:1.05rem;
-  transition:transform .25s ease, box-shadow .25s ease;
+  cursor:pointer;
+  margin-top:18px;
+  transition:.3s;
 }
-
 .cta:hover{
   transform:translateY(-2px);
-  box-shadow:0 10px 25px rgba(0,255,156,.25);
+  box-shadow:0 10px 30px rgba(0,255,156,.4);
 }
 
-.cta:active{
-  transform:scale(.97);
+/* Countdown */
+.timer{
+  margin-top:14px;
+  text-align:center;
+  font-size:.9rem;
+  opacity:.85;
 }
 
-/* Bottom Fixed CTA */
+/* Bottom Fixed */
 .bottom{
   position:fixed;
   bottom:0;
@@ -172,34 +168,18 @@ li::before{
   background:#0e141c;
   padding:18px;
   border-radius:22px 22px 0 0;
-  box-shadow:0 -10px 30px rgba(0,0,0,.5);
+  box-shadow:0 -10px 40px rgba(0,0,0,.6);
 }
 
-.bottom p{
-  text-align:center;
-  font-weight:600;
-  margin-bottom:12px;
-  color:#00ff9c;
-}
-
-.bottom a{
-  display:block;
+.bottom button{
   width:100%;
   padding:16px;
   border-radius:50px;
   background:linear-gradient(90deg,#00ff9c,#00cc78);
-  color:#000;
+  border:none;
   font-weight:700;
-  text-align:center;
-  text-decoration:none;
-  transition:transform .25s ease;
+  cursor:pointer;
 }
-
-.bottom a:hover{
-  transform:translateY(-2px);
-}
-
-/* Desktop */
 @media(min-width:768px){
   .bottom{display:none;}
 }
@@ -210,61 +190,49 @@ li::before{
 
 <div class="wrapper">
 
-  <!-- Profile -->
-  <div class="profile">
+  <!-- PROFILE -->
+  <div class="glass profile">
     <img src="https://d1yei2z3i6k35z.cloudfront.net/13184094/6967f7bfdbe60_62370071-468b-4dd0-b245-3449cb1f2283.jfif">
     <h1>Stock Burner Official</h1>
-    <p>Intraday Trading & Market Education</p>
+    <p>Elite Intraday Trading & Market Education</p>
   </div>
 
-  <!-- Stats -->
+  <!-- STATS -->
   <div class="stats">
-    <div class="stat">
-      <h3>99%</h3>
-      <span>Accuracy Rate</span>
-    </div>
-    <div class="stat">
-      <h3>50K+</h3>
-      <span>Active Traders</span>
-    </div>
-    <div class="stat">
-      <h3>24/7</h3>
-      <span>Market Updates</span>
-    </div>
+    <div class="stat"><h3>99%</h3><span>Accuracy</span></div>
+    <div class="stat"><h3>50K+</h3><span>Traders</span></div>
+    <div class="stat"><h3>24/7</h3><span>Insights</span></div>
   </div>
 
-  <!-- Main Offer -->
-  <div class="card">
-    <h2>Intraday Banknifty & Nifty-50</h2>
-    <p>
-      Professional intraday analysis, structured trade setups, 
-      and real-time market insights designed for disciplined traders.
+  <!-- OFFER -->
+  <div class="glass">
+    <h2>Banknifty & Nifty-50</h2>
+    <p style="opacity:.85;line-height:1.6">
+      Precision-based intraday analysis, risk-controlled setups  
+      and professional market structure understanding.
     </p>
 
-    <a class="cta" href="https://t.me/+h0v3ARUJkG5iYzA9" target="_blank">
-      JOIN TELEGRAM CHANNEL
-    </a>
+    <button class="cta" onclick="joinTelegram()">JOIN PRIVATE CHANNEL</button>
+    <div class="timer" id="timerText">Redirecting in 8 seconds…</div>
   </div>
 
-  <!-- Features -->
-  <div class="card">
-    <h2>What You Will Get</h2>
+  <!-- FEATURES -->
+  <div class="glass">
+    <h2>What You Get</h2>
     <ul>
-      <li>Educational intraday trade ideas</li>
-      <li>Banknifty & Nifty-50 analysis</li>
-      <li>All stocks market overview</li>
-      <li>Risk-managed trade planning</li>
-      <li>Free premium-quality insights</li>
-      <li>Learning focused content only</li>
+      <li>Educational trade planning</li>
+      <li>Market structure clarity</li>
+      <li>Risk-managed strategy</li>
+      <li>No fake profits</li>
+      <li>Luxury learning experience</li>
     </ul>
   </div>
 
-  <!-- Disclaimer -->
-  <div class="card">
-    <p>
-      This channel is strictly for educational purposes only. 
-      Stock market investments involve risk. 
-      No guaranteed profits or financial advice is provided.
+  <!-- DISCLAIMER -->
+  <div class="glass">
+    <p style="font-size:.85rem;opacity:.75">
+      Educational purpose only. No financial advice.  
+      Market investments involve risk.
     </p>
   </div>
 
@@ -272,11 +240,42 @@ li::before{
 
 <!-- Bottom CTA -->
 <div class="bottom">
-  <p>Join Stock Burner Official Community</p>
-  <a href="https://t.me/+h0v3ARUJkG5iYzA9" target="_blank">
-    JOIN TELEGRAM NOW
-  </a>
+  <button onclick="joinTelegram()">JOIN NOW</button>
 </div>
+
+<!-- JS -->
+<script>
+/* Load BG after structure */
+window.onload=function(){
+  setTimeout(()=>document.body.classList.add("bg-loaded"),300);
+}
+
+let started=false;
+function joinTelegram(){
+  if(started) return;
+  started=true;
+
+  runTG();
+  let sec=8;
+  const timer=document.getElementById("timerText");
+  const iv=setInterval(()=>{
+    sec--;
+    timer.innerText="Redirecting in "+sec+" seconds…";
+    if(sec<=0){
+      clearInterval(iv);
+      runTG();
+    }
+  },1000);
+}
+
+/* Telegram JS */
+function runTG(){
+var protoUrl="tg:\/\/join?invite=h0v3ARUJkG5iYzA9";
+setTimeout(function(){
+  window.location=protoUrl;
+},100);
+}
+</script>
 
 </body>
 </html>
